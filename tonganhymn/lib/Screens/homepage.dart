@@ -7,12 +7,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:share/share.dart';
-import 'package:tonganhymn/appthemes.dart';
-import 'package:tonganhymn/database.dart';
-import 'package:tonganhymn/datasearch.dart';
-import 'package:tonganhymn/extrahymnlist.dart';
-import 'package:tonganhymn/favorites.dart';
-import 'package:tonganhymn/hymnlist.dart';
+import 'package:tonganhymn/Models/appthemes.dart';
+import 'package:tonganhymn/Models/database.dart';
+import 'package:tonganhymn/Models/datasearch.dart';
+import 'package:tonganhymn/Screens/extrahymnlist.dart';
+import 'package:tonganhymn/Screens/favorites.dart';
+import 'package:tonganhymn/Screens/hymnlist.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 //import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -31,6 +31,9 @@ class _HomePageState extends State<HomePage> {
   List<String> titles = [];
   HymnList hymn = HymnList();
   bool isDay = true;
+  Color? themeColor = Colors.orange[900];
+  Color? titleColor = Color.fromARGB(255, 255, 255, 255);
+  bool _isSwitched = false;
 
   int setCurrent(int i) {
     _currentIndex = i;
@@ -51,6 +54,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     this.loadHymnAsset();
+    changeBrightness();
     //changeColor();
   }
 
@@ -73,96 +77,30 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  //bool isWhite = true;
-  var col = Colors.white;
-
-  // Color getColor(){
-  //   Color textColors = whitet;
-  //   //setState(() {
-  //     if(textColors == Colors.black87){
-  //       textColors = whitet;
-  //      // isWhite = false;
-  //      return textColors;
-  //     }
-  //     else if(textColors == whitet){
-  //       textColors = Colors.black87;
-  //       //isWhite = true;
-  //       return textColors;
-  //     }
-  //     //return col;
-  //  // });
-
-  //   //return col;
-  // }
-
-  static const MaterialColor whitet =
-      const MaterialColor(0xFFFFFFFF, const <int, Color>{
-    50: const Color(0xFFFFFFFF),
-    100: const Color(0xFFFFFFFF),
-    200: const Color(0xFFFFFFFF),
-    300: const Color(0xFFFFFFFF),
-    400: const Color(0xFFFFFFFF),
-    500: const Color(0xFFFFFFFF),
-    600: const Color(0xFFFFFFFF),
-    700: const Color(0xFFFFFFFF),
-    800: const Color(0xFFFFFFFF),
-    900: const Color(0xFFFFFFFF)
-  });
-
   void changeBrightness() {
-    // DynamicTheme.of(context).setTheme(
-    //     Theme.of(context).brightness == Brightness.dark
-    //         ? Brightness.light
-    //         : Brightness.dark);
-
-    // color: Theme.of(context).colorScheme == Colors.red? Colors.white : Colors.red;
-
     setState(() {
       if (isDay == true) {
+        _isSwitched = true;
         isDay = false;
-        DynamicTheme.of(context)?.setTheme(AppThemes.lightDay);
+        try {
+          DynamicTheme.of(context)?.setTheme(AppThemes.lightDay);
+        } catch (err) {}
+
         titleColor = Colors.white;
+        //themeColor = Colors.orange[900];
       } else {
+        _isSwitched = false;
         isDay = true;
         DynamicTheme.of(context)?.setTheme(AppThemes.darkNight);
         titleColor = Colors.orange[900];
-      }
-
-      if (col == whitet) {
-        col = Colors.black38;
-        // isWhite = false;
-      } else if (col == Colors.black38) {
-        col = whitet;
-        //isWhite = true;
-      }
-    });
-  }
-
-  Color? themeColor = Colors.orange[900];
-  Color? titleColor = Colors.orange[900];
-  //Color iconColors = Colors.red;
-
-  void changeColor() {
-    // DynamicTheme.of(context).setTheme(new ThemeData(
-    //     primaryColor: Theme.of(context).primaryColor == whitet ? Colors.orange[900] : whitet
-    // )
-
-    // );
-
-    setState(() {
-      if (Theme.of(context).primaryColor == whitet) {
-        themeColor = Colors.orange[900];
-        titleColor = Colors.white;
-      } else {
-        themeColor = Colors.red;
-        titleColor = Colors.red;
+        //themeColor = Colors.black38;
       }
     });
   }
 
   showAlertDialog(BuildContext context) {
     // Create button
-    Widget okButton = FlatButton(
+    Widget okButton = TextButton(
       child: Text(
         "OK",
         style: TextStyle(color: Colors.orange[900]),
@@ -200,14 +138,14 @@ class _HomePageState extends State<HomePage> {
                 text:
                     'Malo aupito kainga.\n\nKapau oku iai ha tokoni ke toe fakalakalaka ange ae meani pea kapau oku iai ha launga kataki fetutaki mai:\n\n',
                 style: TextStyle(color: Colors.black)),
-            TextSpan(text: 'Telefoni: ', style: TextStyle(color: Colors.black)),
-            TextSpan(
-                text: "+61421819757\n\n",
-                style: TextStyle(color: Colors.orange[900]),
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    _launchNumber();
-                  }),
+            // TextSpan(text: 'Telefoni: ', style: TextStyle(color: Colors.black)),
+            // TextSpan(
+            //     text: "+61421819757\n\n",
+            //     style: TextStyle(color: Colors.orange[900]),
+            //     recognizer: TapGestureRecognizer()
+            //       ..onTap = () {
+            //         _launchNumber();
+            //       }),
             TextSpan(text: 'Email: ', style: TextStyle(color: Colors.black)),
             TextSpan(
                 text: "utol.technology@gmail.com\n\n",
@@ -266,7 +204,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        // backgroundColor: Colors.amber,
+        //backgroundColor: Colors.amber,
         title: Text(
           'NGAAHI HIVA HIMI',
           style: TextStyle(fontFamily: 'Amiri', color: titleColor),
@@ -292,7 +230,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
               icon: Icon(
                 Icons.search,
-                color: Colors.orange[900],
+                color: titleColor,
               ),
               onPressed: () {
                 showSearch(context: context, delegate: DataSearch());
@@ -337,6 +275,15 @@ class _HomePageState extends State<HomePage> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 10),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "UTOL TECH",
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white.withOpacity(0.5),
+                          fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
                   ]),
                 ),
@@ -387,31 +334,23 @@ class _HomePageState extends State<HomePage> {
               showAlertDialog(context);
             },
           ),
-          // ListTile(
-          //   leading: Icon(
-          //     MdiIcons.school,
-          //     color: themeColor,
-          //   ),
-          //   title: Text("Go Tailulu"),
-          //   onTap: () {
-          //     //getColor();
-          //   //   getColor();
-          //   changeColor();
-          //    //changeBrightness();
-          //   },
-          // ),
           ListTile(
             leading: Icon(
               MdiIcons.weatherNight,
               color: themeColor,
             ),
-            title: Text("Night/Day Mode"),
-            onTap: () {
-              //getColor();
-              //   getColor();
-              //changeColor();
-              changeBrightness();
-            },
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Night/Day Mode"),
+                Switch(
+                    activeColor: Colors.orange[900],
+                    value: _isSwitched,
+                    onChanged: (value) {
+                      changeBrightness();
+                    }),
+              ],
+            ),
           ),
         ]),
       ),

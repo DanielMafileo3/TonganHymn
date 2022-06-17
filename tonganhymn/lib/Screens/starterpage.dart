@@ -2,9 +2,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tonganhymn/hivausulist.dart';
-import 'package:tonganhymn/homepage.dart';
-import 'package:tonganhymn/hymnlist.dart';
+import 'package:tonganhymn/Screens/hivausulist.dart';
+import 'package:tonganhymn/Screens/homepage.dart';
+import 'package:tonganhymn/Screens/hymnlist.dart';
 
 class StarterPage extends StatefulWidget {
   @override
@@ -37,13 +37,12 @@ class _StarterPage extends State<StarterPage> {
                     children: [
                       SizedBox(height: 20),
                       Container(
-                        padding: EdgeInsets.all(20),
+                        padding: EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             Image.asset('assets/images/sttlogowhiteandred.png'),
-                            //SizedBox(height: 50),
                             Container(
                               padding: EdgeInsets.all(0),
                               child: Row(
@@ -70,6 +69,15 @@ class _StarterPage extends State<StarterPage> {
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
+                      SizedBox(height: 10),
+                      Text(
+                        "UTOL TECH",
+                        style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.white.withOpacity(0.5),
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
                       SizedBox(height: 150),
                       Column(
                         //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -78,10 +86,13 @@ class _StarterPage extends State<StarterPage> {
                           SizedBox(
                             height: 60,
                             width: 300,
-                            child: RaisedButton(
-                              color: Colors.orange[900],
-                              shape: StadiumBorder(
-                                  side: BorderSide(color: Colors.white)),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.orange[900],
+                                shape: StadiumBorder(
+                                    side: BorderSide(color: Colors.white)),
+                              ),
+
                               //color
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,

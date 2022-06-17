@@ -1,4 +1,4 @@
-import 'package:tonganhymn/model.dart';
+import 'package:tonganhymn/Models/model.dart';
 
 class HymnItem extends Model {
   static String table = 'items';

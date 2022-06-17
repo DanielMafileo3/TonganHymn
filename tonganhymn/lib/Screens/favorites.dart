@@ -3,10 +3,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:tonganhymn/database.dart';
-import 'package:tonganhymn/favoriteshymns.dart';
-import 'package:tonganhymn/homepage.dart';
-import 'package:tonganhymn/hymn.dart';
+import 'package:tonganhymn/Models/database.dart';
+import 'package:tonganhymn/Screens/favoriteshymns.dart';
+import 'package:tonganhymn/Screens/homepage.dart';
+import 'package:tonganhymn/Screens/hymn.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Favorites extends StatefulWidget {
@@ -35,23 +35,15 @@ class _MyHomePageState extends State<Favorites> {
     final TodoHelper _todoHelper = TodoHelper();
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //   icon:Icon(Icons.arrow_back),
-        //   onPressed: (){
-        //     Navigator.push(context,
-        //           MaterialPageRoute(builder: (context) => HomePage()));
-        //   },
-
-        // ),
         iconTheme: IconThemeData(
-          color: Colors.orange[900],
+          color: Color.fromARGB(255, 255, 255, 255),
         ),
         // backgroundColor: Colors.white,
         title: Text(
           'My Hymns',
           style: TextStyle(
               //fontFamily: 'Nanum Gothic',
-              color: Colors.orange[900],
+              //color: Colors.orange[900],
               fontSize: 15),
         ),
         centerTitle: true,

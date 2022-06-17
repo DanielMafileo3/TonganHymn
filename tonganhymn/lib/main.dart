@@ -1,9 +1,9 @@
 import 'package:dynamic_themes/dynamic_themes.dart';
 import 'package:flutter/material.dart';
-import 'package:tonganhymn/appthemes.dart';
-import 'package:tonganhymn/starterpage.dart';
+import 'package:tonganhymn/Models/appthemes.dart';
+import 'package:tonganhymn/Screens/starterpage.dart';
 
-import 'datasearch.dart';
+import 'Models/datasearch.dart';
 
 //void main() => runApp(MyApp());
 
