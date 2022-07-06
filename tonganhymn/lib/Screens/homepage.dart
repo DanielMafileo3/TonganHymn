@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
             TextSpan(text: 'Email: ', style: TextStyle(color: Colors.black)),
             TextSpan(
                 text: "utol.technology@gmail.com\n\n",
-                style: TextStyle(color: Colors.orange[900]),
+                style: TextStyle(color: Color(0xFFE65100)),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
                     _launchEmail();
