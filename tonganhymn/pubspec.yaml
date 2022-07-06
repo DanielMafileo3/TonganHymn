@@ -40,19 +40,24 @@ dependencies:
   sqflite: ^2.0.2+1
   path_provider: ^2.0.10
   dynamic_themes: ^1.1.0
-  flutter_native_splash: ^2.2.0+1
   #firstbase app icon
   flutter_launcher_icons: ^0.9.3
+  #Splash Screen
+  flutter_native_splash: ^2.2.3+1
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   remove_alpha_ios: true
   image_path: "assets/images/stticon.png"
-  
 
+flutter_native_splash:
+  color: "#E65100"
+  image: "assets/images/splashscreen.png"
+  android: true
+  ios: true
   
-
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, deprecated_member_use
 
 import 'dart:convert';
 
@@ -110,14 +110,14 @@ class _HomePageState extends State<HomePage> {
       },
     );
 
-    _launchNumber() async {
-      const url = 'tel:+61421819757';
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
+    // _launchNumber() async {
+    //   const url = 'tel:+61421819757';
+    //   if (await canLaunch(url)) {
+    //     await launch(url);
+    //   } else {
+    //     throw 'Could not launch $url';
+    //   }
+    // }
 
     _launchEmail() async {
       const url = 'mailto:utol.technology@gmail.com';
@@ -169,8 +169,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(color: Colors.orange[900]),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    launch(
-                        'https://www.facebook.com/utol.tech/?modal=admin_todo_tour');
+                    launch('https://www.facebook.com/utol.tech');
                   }),
             TextSpan(text: 'Website: ', style: TextStyle(color: Colors.black)),
             TextSpan(
@@ -299,19 +298,21 @@ class _HomePageState extends State<HomePage> {
             onTap: () async {
               List<TaskModel> list = await _todoHelper.getAllTask();
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Favorites(list: list)));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Favorites(list: list),
+                ),
+              );
             },
           ),
-          ListTile(
-            leading: Icon(
-              MdiIcons.mail,
-              color: themeColor,
-            ),
-            title: Text("Feedback"),
-            onTap: () {},
-          ),
+          // ListTile(
+          //   leading: Icon(
+          //     MdiIcons.mail,
+          //     color: themeColor,
+          //   ),
+          //   title: Text("Feedback"),
+          //   onTap: () {},
+          // ),
           ListTile(
             leading: Icon(
               MdiIcons.share,
@@ -319,8 +320,7 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text("Share"),
             onTap: () {
-              Share.share(
-                  'check out my website https://pub.dev/packages/url_launcher#-readme-tab-');
+              Share.share('https://www.facebook.com/utol.tech');
             },
           ),
           ListTile(
