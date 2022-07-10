@@ -17,7 +17,7 @@ class Hymn extends StatefulWidget {
   int? index;
   final TodoHelper _todoHelper = TodoHelper();
 
-  Hymn(int hymnindex) {
+  Hymn(int hymnindex, String string) {
     index = hymnindex;
     currentPage = hymnindex;
     hasChangedPages = false;

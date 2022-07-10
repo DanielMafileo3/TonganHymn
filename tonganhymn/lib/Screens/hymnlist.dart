@@ -50,8 +50,11 @@ class Himi extends StatelessWidget {
                     onTap: () {
                       //print("HymnList build index: $index");
                       //setState(() {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Hymn(index)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Hymn(index, mydata![index]['title'])));
                       //});
                     },
                     child: Container(

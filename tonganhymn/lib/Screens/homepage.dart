@@ -305,14 +305,17 @@ class _HomePageState extends State<HomePage> {
               );
             },
           ),
-          // ListTile(
-          //   leading: Icon(
-          //     MdiIcons.mail,
-          //     color: themeColor,
-          //   ),
-          //   title: Text("Feedback"),
-          //   onTap: () {},
-          // ),
+          ListTile(
+            leading: Icon(
+              MdiIcons.mail,
+              color: themeColor,
+            ),
+            title: Text("Feedback"),
+            onTap: () {
+              launch(
+                  "https://apps.apple.com/app/siasi-o-tonga-tauataina-hymn/id1630288366");
+            },
+          ),
           ListTile(
             leading: Icon(
               MdiIcons.share,
@@ -320,7 +323,8 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text("Share"),
             onTap: () {
-              Share.share('https://www.facebook.com/utol.tech');
+              Share.share(
+                  'https://apps.apple.com/app/siasi-o-tonga-tauataina-hymn/id1630288366');
             },
           ),
           ListTile(

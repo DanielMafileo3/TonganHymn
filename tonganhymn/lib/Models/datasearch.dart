@@ -10,6 +10,7 @@ class DataSearch extends SearchDelegate<String> {
   List hymnHistory = [];
   List? data;
   List<String> titles = [];
+  List<String> hymnTitles = [];
   List<String> indexTitles = [];
   int count = 0;
 
@@ -22,6 +23,7 @@ class DataSearch extends SearchDelegate<String> {
     for (int i = 0; i <= 359; i++) {
       //titles.add(data[i]['number']);
       count++;
+      hymnTitles.add(data![i]['title']);
       titles.add('$count.  ' + data![i]['title'].toString().toLowerCase());
       titles.add(data![i]['title'].toString().toLowerCase());
       indexTitles.add(data![i]['title'].toString().toLowerCase());
@@ -138,12 +140,12 @@ class DataSearch extends SearchDelegate<String> {
       } else if (queryHymn[0].startsWith(RegExp(r'[0-9]'))) {
         num = hymnNum! + 1;
         hymnHistory.add(num.toString() + '. ' + indexTitles[hymnNum]);
-        return Hymn(hymnNum);
+        return Hymn(hymnNum, hymnTitles[hymnNum].toString());
       } else {
         //print('else being called');
         num = indexHymn! + 1;
         hymnHistory.add(num.toString() + '. ' + indexTitles[indexHymn]);
-        return Hymn(indexHymn);
+        return Hymn(indexHymn, hymnTitles[indexHymn].toString());
       }
     } catch (e) {
       return Scaffold(
